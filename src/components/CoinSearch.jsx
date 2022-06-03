@@ -3,7 +3,8 @@ import CoinItem from './CoinItem';
 
 const CoinSearch = ({ coins }) => {
   const [searchText, setSearchText] = useState('');
-  console.log(coins)
+
+
   return (
     <div className='rounded-div my-4'>
       <div className='flex flex-col md:flex-row justify-between pt-4 pb-6 text-center md:text-right'>
@@ -34,15 +35,7 @@ const CoinSearch = ({ coins }) => {
         </thead>
         <tbody>
           {coins
-            .filter((value) => {
-              if (searchText === '') {
-                return value;
-              } else if (
-                value.name.toLowerCase().includes(searchText.toLowerCase())
-              ) {
-                return value;
-              }
-            })
+            .filter((value) =>  searchText === '' ? value : value.name.toLowerCase().includes(searchText.toLowerCase()))
             .map((coin) => (
               <CoinItem key={coin.id} coin={coin} />
             ))}
